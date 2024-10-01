@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools {
-        flutter 'flutter-sdk'
+        flutter 'flutter-sdk' // Assuming 'flutter-sdk' matches your configured Flutter SDK tool in Jenkins
     }
 
     stages {
@@ -14,19 +14,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'flutter pub get'
+                sh '$FLUTTER_HOME/bin/flutter pub get'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'flutter test'
+                sh '$FLUTTER_HOME/bin/flutter test'
             }
         }
 
         stage('Build APK') {
             steps {
-                sh 'flutter build apk --release'
+                sh '$FLUTTER_HOME/bin/flutter build apk --release'
             }
         }
     }
